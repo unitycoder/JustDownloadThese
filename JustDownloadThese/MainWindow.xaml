@@ -5,25 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustDownloadThese"
         mc:Ignorable="d"
-        Title="MainWindow" Height="604.26" Width="800">
-	<Grid Background="#FFA4A4A4" Margin="0">
-		<Button x:Name="btnDownload" Content="Download" HorizontalAlignment="Left" Margin="674,485,0,0" VerticalAlignment="Top" Width="108" Height="78" Click="BtnDownload_Click"/>
-		<Label x:Name="label" Content="Give me these things" HorizontalAlignment="Left" Margin="32,19,0,0" VerticalAlignment="Top" Width="182"/>
-		<TextBox
-  x:Name="txtSource"
-  TextWrapping="Wrap"
-  AcceptsReturn="True"
-  VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="284" Margin="32,50,0,0"
-></TextBox>
+        Title="JustDownloadThese" Height="650
+        " Width="1000" Closing="Window_Closing">
+    <Grid Background="#FF7F7F7F">
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="labelParse" Content="Parse files from this URL" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtUrl" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="790" MaxLines="1" Grid.ColumnSpan="2"/>
+                    <Label x:Name="label_Copy3" Content="Find:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,0,0,0"/>
+                    <TextBox x:Name="txtFilter" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Text=".laz" Grid.Column="1" Width="50"/>
+                    <Button x:Name="btnParseUrl" Content="Parse files" HorizontalAlignment="Left" VerticalAlignment="Center" Width="108" Height="34" Click="btnParseUrl_Click" Grid.Column="1"/>
+                </StackPanel>
+            </Grid>
+            <Grid>
+                <Label x:Name="label" Content="List of files" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <Label x:Name="lblCount" Content="-" VerticalAlignment="Top" Width="64" Grid.Column="1" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+            </Grid>
+            <TextBox  x:Name="txtSource"  AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" Height="90" Grid.ColumnSpan="2"/>
 
-		<DataGrid x:Name="gridFiles" SelectionMode="Single" Margin="19,139,0,0" CanUserAddRows="False" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" HeadersVisibility="Column"  HorizontalGridLinesBrush="#4C000000" VerticalGridLinesBrush="#19000000" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Height="407" Width="606">
-			<DataGrid.Columns>
-				<DataGridTextColumn  Binding="{Binding Url}" ClipboardContentBinding="{x:Null}" Header="Path" IsReadOnly="True" />
-			</DataGrid.Columns>
-		</DataGrid>
-		<TextBox x:Name="txtDownloadFolder" HorizontalAlignment="Left" Height="24" Margin="381,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375"/>
-		<Label x:Name="label_Copy" Content="Put them here" HorizontalAlignment="Left" Margin="381,24,0,0" VerticalAlignment="Top" Width="182"/>
-		<CheckBox x:Name="chkSkipIfExists" Content="Skip if File Already Exists" HorizontalAlignment="Left" Margin="381,87,0,0" VerticalAlignment="Top" IsChecked="True"/>
-
-	</Grid>
+            <Label x:Name="label_Copy" Content="Download folder" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtDownloadFolder" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="790" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="chkSkipIfExists" Content="Skip if File Already Exists" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Grid.ColumnSpan="2"/>
+                </StackPanel>
+            </Grid>
+            <Button x:Name="btnDownload" Content="Download" VerticalAlignment="Top" Height="44" Click="BtnDownload_Click" Grid.Column="1" Margin="0,30,0,0"/>
+            <Label x:Name="label_Copy1" Content="Progress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="182" Grid.ColumnSpan="2"/>
+            <DataGrid x:Name="gridFiles" SelectionMode="Single" CanUserAddRows="False" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" HeadersVisibility="Column"  HorizontalGridLinesBrush="#4C000000" VerticalGridLinesBrush="#19000000" AutoGenerateColumns="False" Height="300" VerticalAlignment="Top" EnableRowVirtualization="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Binding="{Binding Url}" ClipboardContentBinding="{x:Null}" Header="Path" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
 </Window>
