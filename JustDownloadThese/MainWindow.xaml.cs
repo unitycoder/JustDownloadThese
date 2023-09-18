@@ -91,7 +91,10 @@ namespace JustDownloadThese
 
                     string outfile = Path.Combine(downloadFolder, GetFileNameFromUrl(dl.Url));
 
-                    // if already exists, skip
+                    // check that folder exists, create if missing any part
+                    if (Directory.Exists(Path.GetDirectoryName(outfile)) == false) Directory.CreateDirectory(Path.GetDirectoryName(outfile));
+
+                    // if file already exists, skip
                     if (skipIfExists == true)
                     {
                         if (File.Exists(outfile))
